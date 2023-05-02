@@ -7,29 +7,6 @@ import (
 	"ddam2k/lbson/lbson"
 )
 
-// const (
-// 	BJTINT8    = '1'
-// 	BJTINT16   = '2'
-// 	BJTINT32   = '4'
-// 	BJTINT64   = '8'
-// 	BJTUINT8   = '!'
-// 	BJTUINT16  = '@'
-// 	BJTUINT32  = '$'
-// 	BJTUINT64  = '*'
-// 	BJTFLOAT32 = 'f'
-// 	BJTFLOAT64 = 'F'
-// 	BJTSTRING1 = 's'
-// 	BJTSTRING2 = 't'
-// 	BJTSTRING4 = 'r'
-// 	BJTBOOL    = 'b'
-// 	BJTMAP1    = 'M'
-// 	BJTMAP2    = 'A'
-// 	BJTMAP4    = 'P'
-// 	BJTSLICE1  = 'S'
-// 	BJTSLICE2  = 'L'
-// 	BJTSLICE4  = 'I'
-// )
-
 func main() {
 	fmt.Println("test1")
 
