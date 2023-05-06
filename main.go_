@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"ddam2k/lbson/lbson"
+	"github.com/ddam2k/lbson/lbson"
 )
 
 func main() {

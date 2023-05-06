@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math"
 
-	"ddam2k/lbson/lbson/types"
+	"github.com/ddam2k/lbson/lbson/types"
 )
 
 func GetCodeAndNumber(bytes []byte) (int, int, int) {

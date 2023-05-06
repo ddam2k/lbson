@@ -1,4 +1,4 @@
-module ddam2k/lbson
+module github.com/ddam2k/lbson
 
 go 1.18
 

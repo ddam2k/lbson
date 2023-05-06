@@ -1,8 +1,8 @@
 package lbson
 
 import (
-	"ddam2k/lbson/lbson/marshal"
-	"ddam2k/lbson/lbson/unmarshal"
+	"github.com/ddam2k/lbson/lbson/marshal"
+	"github.com/ddam2k/lbson/lbson/unmarshal"
 )
 
 func Marshal(data interface{}) ([]byte, error) {

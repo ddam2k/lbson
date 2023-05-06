@@ -7,7 +7,7 @@ import (
 	"math"
 	"reflect"
 
-	"ddam2k/lbson/lbson/types"
+	"github.com/ddam2k/lbson/lbson/types"
 
 	"golang.org/x/exp/constraints"
 )
