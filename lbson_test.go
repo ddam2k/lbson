@@ -1,34 +1,31 @@
 package lbson_test
 
 import (
-	"bytes"
+	"encoding/json"
 	"fmt"
 	"testing"
 
 	"github.com/ddam2k/lbson"
 )
 
-func TestPrimitive(t *testing.T) {
-	var u8 = 100
+func TestMarshalUnMarshal(t *testing.T) {
+	const jsInput = "{\"abcd\":1.5,\"bcdef\":\"mgkim\",\"boolean\":true,\"cdefg\":[134,223,343,65537,12345678,1.1]}"
 
-	if u8b, err := lbson.Marshal(u8); err != nil {
-		t.Fail()
-	} else {
-		fmt.Printf("u8 = %x\n", u8b)
-		if !bytes.Equal(u8b, []byte{0x21, 0x64}) {
-			t.Fail()
-		}
+	var data map[string]interface{}
+
+	json.Unmarshal([]byte(jsInput), &data)
+
+	bytes, err := lbson.Marshal(data)
+
+	if err != nil {
+		fmt.Println(err)
 	}
 
-	// var u16 = 1000
+	out, _ := lbson.Unmarshal(bytes)
 
-	// if u16b, err := lbson.Marshal(u16); err != nil {
-	// 	t.Fail()
-	// } else {
-	// 	fmt.Printf("u16 = %x\n", u16b)
-	// 	if !bytes.Equal(u16b, []byte{0x22, 0x64}) {
-	// 		t.Fail()
-	// 	}
-	// }
+	jsOutBytes, _ := json.Marshal(out)
 
+	if string(jsOutBytes) != jsInput {
+		t.Fail()
+	}
 }

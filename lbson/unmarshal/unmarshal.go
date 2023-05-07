@@ -2,7 +2,6 @@ package unmarshal
 
 import (
 	"encoding/binary"
-	"fmt"
 	"math"
 
 	"github.com/ddam2k/lbson/lbson/types"
@@ -30,8 +29,6 @@ func GetCodeAndNumber(bytes []byte) (int, int, int) {
 func BJStringU(bytes []byte) (interface{}, int) {
 	_, len, spent := GetCodeAndNumber(bytes)
 	str := bytes[spent+1 : spent+1+len]
-	// idx += len
-	fmt.Printf("str=%s\n", str)
 	return string(str), spent + 1 + len
 }
 
@@ -39,17 +36,17 @@ func BJMapU(bytes []byte) (interface{}, int) {
 	var spent int
 	out := make(map[string]interface{})
 	_, count, spent := GetCodeAndNumber(bytes)
-	fmt.Printf("map len = %d, bytes = %d\n", count, spent)
+	// fmt.Printf("map len = %d, bytes = %d\n", count, spent)
 	idx := spent + 1
 	for i := 0; i < count; i++ {
 		var key string
 		code, len, spent := GetCodeAndNumber(bytes[idx:])
-		fmt.Printf("map code : %x %s\n", code, types.CodeToString(code))
+		// fmt.Printf("map code : %x %s\n", code, types.CodeToString(code))
 		idx += spent + 1
 		if code == types.BJTSTRING {
 			key = string(bytes[idx : idx+len])
 			idx += len
-			fmt.Printf("key=%s\n", key)
+			// fmt.Printf("key=%s\n", key)
 		}
 		if value, spent := Unmarshal(bytes[idx:]); value != nil {
 			out[key] = value
@@ -63,7 +60,7 @@ func BJSliceU(bytes []byte) (interface{}, int) {
 	var spent int
 	out := make([]interface{}, 0)
 	_, count, spent := GetCodeAndNumber(bytes)
-	fmt.Printf("slice len = %d, bytes = %d\n", count, spent)
+	// fmt.Printf("slice len = %d, bytes = %d\n", count, spent)
 	idx := spent + 1
 	for i := 0; i < count; i++ {
 		if value, spent := Unmarshal(bytes[idx:]); value != nil {
@@ -122,7 +119,7 @@ func BJBoolU(bytes []byte) (interface{}, int) {
 
 func Unmarshal(bytes []byte) (interface{}, int) {
 	code := int(bytes[0] >> 4 & 0x0f)
-	fmt.Printf("code: %d %s\n", code, types.CodeToString(code))
+	// fmt.Printf("code: %d %s\n", code, types.CodeToString(code))
 	switch code {
 	case types.BJTMAP:
 		return BJMapU(bytes)
